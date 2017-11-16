@@ -15,28 +15,28 @@ public class BinaryTreeSort {
 	public Node insert(Node node, final Integer x) {
 		if (node == null)
 			return node = new Node(x);
-		if (x < (Integer) node.anElement)
-			node.less = insert(node.less, x);
+		if (x < (Integer) node.item)
+			node.previous = insert(node.previous, x);
 		else
-			node.greater = insert(node.greater, x);
+			node.next = insert(node.next, x);
 		return node;
 	}// end insert
 
 	public Node decimalInsert(Node node, final Double x) {
 		if (node == null)
 			return node = new Node(x);
-		if (x < (Double) node.anElement)
-			node.less = decimalInsert(node.less, x);
+		if (x < (Double) node.item)
+			node.previous = decimalInsert(node.previous, x);
 		else
-			node.greater = decimalInsert(node.greater, x);
+			node.next = decimalInsert(node.next, x);
 		return node;
 	}// end insert
 
 	public void treeSort(final Node node) {
 		if (node != null) {
-			treeSort(node.less);
-			System.out.print((node.anElement) + ", ");
-			treeSort(node.greater);
+			treeSort(node.previous);
+			System.out.print((node.item) + ", ");
+			treeSort(node.next);
 		} // end if
 	}// end TreeSort class
 
