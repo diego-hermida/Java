@@ -69,8 +69,8 @@ public class Bag<Element> implements Iterable<Element> {
 	}
 
 	/**
-	 * @return an iterator that iterates over the elements in this bag in
-	 *         arbitrary order
+	 * @return an iterator that iterates over the elements in this bag in arbitrary
+	 *         order
 	 */
 	@Override
 	public Iterator<Element> iterator() {
