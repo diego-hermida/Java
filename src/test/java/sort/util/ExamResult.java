@@ -11,7 +11,7 @@ package sort.util;
  */
 public final class ExamResult implements Comparable<ExamResult>, Cloneable {
 
-	private final double grade;
+	private final Double grade;
 	private final String studentName;
 	private final boolean withHonors;
 
@@ -57,9 +57,9 @@ public final class ExamResult implements Comparable<ExamResult>, Cloneable {
 
 	@Override
 	public int compareTo(final ExamResult o) {
-		if (grade > o.grade)
+		if (grade.compareTo(o.grade) > 0)
 			return 1;
-		else if (grade < o.grade)
+		else if ((grade.compareTo(o.grade) < 0))
 			return -1;
 		else if (withHonors && !o.withHonors)
 			return 1;
