@@ -2,14 +2,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class treeclass {
-	private class Node {
-		int data;
-		ArrayList<Node> child = new ArrayList<>();
-	}
+public class treeclass<T extends Comparable<T>> {
 
-	private Node root;
-	private int size;
 
 	/*
 	A generic tree is a tree which can have as many children as it can be

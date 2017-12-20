@@ -15,7 +15,7 @@ import others.MyNode;
  * @author Unknown
  *
  */
-class SinglyLinkedList<T> {
+public class SinglyLinkedList<T> {
 	/** Head referred to the front of the list */
 
 	private MyNode<T> head;
@@ -51,11 +51,13 @@ class SinglyLinkedList<T> {
 	 * @return reference of the head of the linked list
 	 */
 
-	MyNode<T> InsertAt(final T item, int position) {
+	public MyNode<T> InsertAt(final T item, int position) {
 
 		final MyNode<T> newNode = new MyNode<>(item);
 		if (position == 0) {
 			newNode.setNext(head);
+			// The new value of head was not assigned in the previous version
+			head = newNode;
 			return newNode;
 		}
 		MyNode<T> current = head;
@@ -97,25 +99,5 @@ class SinglyLinkedList<T> {
 			temp = temp.getNext();
 		}
 		return value;
-	}
-
-	/**
-	 * Main method
-	 *
-	 * @param args
-	 *            Command line arguments
-	 */
-	public static void main(final String args[]) {
-		final SinglyLinkedList<Integer> myList = new SinglyLinkedList<>();
-
-		System.out.println(myList.isEmpty()); // Will print true
-
-		myList.insertHead(5);
-		myList.insertHead(7);
-		myList.insertHead(10);
-
-		System.out.println(myList.toString()); // 10(head) --> 7 --> 5
-		myList.pop();
-		System.out.println(myList.toString()); // 7(head) --> 5
 	}
 }
