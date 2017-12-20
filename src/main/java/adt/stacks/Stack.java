@@ -1,5 +1,7 @@
 package adt.stacks;
 
+import java.util.EmptyStackException;
+
 /**
  *
  * A stack is exactly what it sounds like. An element gets added to the top of
@@ -33,6 +35,10 @@ public class Stack {
 		top = -1;
 	}
 
+	public int getSize() {
+		return maxSize;
+	}
+
 	/**
 	 * Adds an element to the top of the stack
 	 *
@@ -53,16 +59,12 @@ public class Stack {
 	 * @return value popped off the Stack
 	 */
 	public int pop() {
-		if (!isEmpty())
+		if (!isEmpty()) {
+			if (top < (maxSize / 4))
+				resize(Math.round(maxSize / 2));
 			return stackArray[top--];
-
-		if (top < (maxSize / 4)) {
-			resize(maxSize / 2);
-			return -1;
-		} else {
-			System.out.println("The stack is already empty");
-			return -1;
-		}
+		} else
+			throw new EmptyStackException();
 	}
 
 	/**
@@ -73,10 +75,8 @@ public class Stack {
 	public int peek() {
 		if (!isEmpty())
 			return stackArray[top];
-		else {
-			System.out.println("The stack is empty, cant peek");
-			return -1;
-		}
+		else
+			throw new EmptyStackException();
 	}
 
 	private void resize(final int newSize) {

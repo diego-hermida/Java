@@ -26,11 +26,26 @@ public class SinglyLinkedListTest {
 	}
 
 	@Test
+	public void testInsertHead() {
+		list.insertHead(1);
+		list.insertHead(2);
+		list.insertHead(3);
+		assertEquals(list.pop().getNext().getItem().intValue(), 2);
+	}
+
+	@Test
+	public void testGetNextInsertAt() {
+		list.InsertAt(1, 0);
+		list.InsertAt(2, 0);
+		assertEquals(list.pop().getNext().getItem().intValue(), 1);
+	}
+
+	@Test
 	public void testInsertAt() {
 		for (int i = 0; i < SIZE; i++)
 			list.InsertAt(1, i);
-		assertEquals(list.InsertAt(1, 0).getItem(), list.pop().getItem());
-		assertEquals(list.InsertAt(1, 0).getPrevious(), null);
+		assertEquals(list.pop().getNext().getItem().intValue(), 1);
+		assertEquals(list.InsertAt(1, 10).getNext().getItem().intValue(), 1);
 		assertEquals(list.pop().getPrevious(), null);
 
 		// NullPointerException with this check.
@@ -48,10 +63,6 @@ public class SinglyLinkedListTest {
 		list.insertHead(10);
 
 		assertFalse(list.isEmpty());
-
-		System.out.println(list.toString());
-		list.pop();
-		System.out.println(list.toString());
 
 	}
 }

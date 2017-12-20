@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.EmptyStackException;
+
 import org.junit.Test;
 
 import adt.stacks.Stack;
@@ -11,31 +13,44 @@ import adt.stacks.Stack;
 public class StackTest {
 
 	public static final int RESIZE = 70000000;
-	public static final int NON_EXISTENT_ELEMENT = -1;
+	public static final int SIZE = 5;
 
-	final Stack stack = new Stack(4);
+	final Stack stack = new Stack(SIZE);
 
 	@Test
 	public void testEmptyStack() {
 
 		assertTrue(stack.isEmpty());
 		assertFalse(stack.isFull());
-		assertEquals(stack.pop(), NON_EXISTENT_ELEMENT);
+	}
 
-		// ArrayIndexOutBoundsException with this check when resize(maxSize / 2) is
-		// double.
-		// assertEquals(stack.pop(), NON_EXISTENT_ELEMENT);
+	@Test(expected = EmptyStackException.class)
+	public void testPopEmptyStackException() {
+		assertTrue(stack.isEmpty());
+		stack.pop();
+	}
 
-		assertEquals(stack.peek(), NON_EXISTENT_ELEMENT);
+	@Test(expected = EmptyStackException.class)
+	public void testPeekEmptyStackException() {
+		assertTrue(stack.isEmpty());
+		stack.peek();
+	}
+
+	@Test
+	public void testPushWithResizedStack() {
+		for (int i = 0; i < RESIZE; i++)
+			stack.push(i);
+		assertEquals(stack.pop(), RESIZE - 1);
 	}
 
 	@Test
 	public void testPopWithResizedStack() {
-
-		for (int i = 0; i < RESIZE; i++)
-			stack.push(i);
-		assertEquals(stack.pop(), RESIZE - 1);
-
+		stack.push(1);
+		stack.push(2);
+		assertEquals(stack.getSize(), 5);
+		assertEquals(stack.pop(), 2);
+		assertEquals(stack.pop(), 1);
+		assertEquals(stack.getSize(), 2);
 	}
 
 	@Test
@@ -43,6 +58,7 @@ public class StackTest {
 		for (int i = 0; i < RESIZE; i++)
 			stack.push(i);
 		stack.makeEmpty();
+		assertTrue(stack.isEmpty());
 
 		/**
 		 * If not used makeEmpty, this for loop would cause a
@@ -50,10 +66,7 @@ public class StackTest {
 		 */
 		for (int i = 0; i < RESIZE; i++)
 			stack.push(i);
-
-		stack.makeEmpty();
-		assertEquals(stack.peek(), NON_EXISTENT_ELEMENT);
-		assertEquals(stack.pop(), NON_EXISTENT_ELEMENT);
+		assertFalse(stack.isEmpty());
 	}
 
 	/**
@@ -66,12 +79,13 @@ public class StackTest {
 		stack.push(8);
 		stack.push(2);
 		stack.push(9);
+		stack.push(5);
 
 		assertFalse(stack.isEmpty());
 		assertTrue(stack.isFull());
+		assertEquals(stack.peek(), 5);
+		assertEquals(stack.pop(), 5);
 		assertEquals(stack.peek(), 9);
-		assertEquals(stack.pop(), 9);
-		assertEquals(stack.peek(), 2);
 	}
 
 }

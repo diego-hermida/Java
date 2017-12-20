@@ -2,7 +2,6 @@ package adt;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Random;
@@ -27,10 +26,16 @@ public class QueueTest {
 		assertTrue(queue.isEmpty());
 		assertEquals(queue.getSize(), 0);
 		assertEquals(queue.peekFront(), 0);
-		assertEquals(queue.remove(), -1);
+	}
 
-		// ArrayIndexOutBoundsException with this check.
-		// assertEquals(queue.peekRear(), 0);
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void testPeekRearArrayIndexOutBoundsException() {
+		queue.peekRear();
+	}
+
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void testPeekRemoveArrayIndexOutBoundsException() {
+		queue.remove();
 	}
 
 	@Test
@@ -62,16 +67,21 @@ public class QueueTest {
 			queue.insert(i);
 		assertTrue(queue.isFull());
 		assertEquals(queue.peekRear(), CAPACITY - 1);
-		/**
-		 * Should ignore this insert
-		 */
-		queue.insert(61);
-		assertNotEquals(queue.peekRear(), 61);
-		assertEquals(queue.peekRear(), CAPACITY - 1);
 
 		for (int i = 0; i < CAPACITY; i++)
 			assertEquals(queue.peekFront(), queue.remove());
 		assertTrue(queue.isEmpty());
+	}
+
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void testArrayIndexOutOfBoundsExceptionWithInsert() {
+		for (int i = 0; i < CAPACITY; i++)
+			queue.insert(i);
+		assertTrue(queue.isFull());
+		assertEquals(queue.peekRear(), CAPACITY - 1);
+		
+		// ArrayIndexOutOfBoundsException with this insert.
+		queue.insert(61);
 	}
 
 	@Test

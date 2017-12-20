@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.EmptyStackException;
+
 import org.junit.Test;
 
 import adt.stacks.StackOfLinkedList;
@@ -19,9 +21,12 @@ public class StackOfLinkedListTest {
 
 		assertTrue(stack.isEmpty());
 		assertEquals(stack.getSize(), 0);
+	}
 
-		// NullPointerException with this check.
-		// stack.pop();
+	@Test(expected = EmptyStackException.class)
+	public void testEmptyStackExceptionStackOfLinkedList() {
+		assertTrue(stack.isEmpty());
+		stack.pop();
 	}
 
 	@Test
@@ -53,10 +58,6 @@ public class StackOfLinkedListTest {
 		stack.push(9);
 
 		assertEquals(stack.getSize(), 4);
-
-		stack.printStack();
-
-		System.out.println("Size of stack currently is: " + stack.getSize());
 
 		stack.pop();
 		stack.pop();

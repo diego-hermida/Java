@@ -25,9 +25,11 @@ public class PriorityQueueTest {
 	public void testNewPriorityQueueIsEmpty() {
 		assertTrue(pqueue.isEmpty());
 		assertEquals(pqueue.getSize(), 0);
+	}
 
-		// ArrayIndexOutBoundsException with this check.
-		// assertEquals(pqueue.peek(), 0);
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void testPeekArrayIndexOutBoundsException() {
+		pqueue.peek();
 	}
 
 	@Test
@@ -61,12 +63,21 @@ public class PriorityQueueTest {
 		assertTrue(pqueue.isFull());
 		assertEquals(pqueue.peek(), CAPACITY - 1);
 
-		// ArrayIndexOutBoundsException with this insert.
-		// pqueue.insert(1);
-
 		for (int i = CAPACITY - 1; i >= 0; i--)
 			assertEquals(pqueue.peek(), pqueue.remove());
 		assertTrue(pqueue.isEmpty());
+	}
+
+	@Test(expected = ArrayIndexOutOfBoundsException.class)
+	public void testInsertArrayIndexOutBoundsException() {
+		for (int i = 0; i < CAPACITY; i++)
+			pqueue.insert(i);
+
+		assertTrue(pqueue.isFull());
+		assertEquals(pqueue.peek(), CAPACITY - 1);
+
+		// ArrayIndexOutOfBoundsException with this insert.
+		pqueue.insert(1);
 	}
 
 	@Test

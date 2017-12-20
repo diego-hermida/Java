@@ -38,7 +38,9 @@ public class PriorityQueue {
 	 *            Value to be inserted
 	 */
 	public void insert(final int value) {
-		if (nItems == 0)
+		if (isFull())
+			throw new ArrayIndexOutOfBoundsException("Priority queue is full");
+		else if (nItems == 0)
 			queueArray[0] = value;
 		else {
 			int j = nItems;
@@ -66,6 +68,8 @@ public class PriorityQueue {
 	 * @return element at the front of the queue
 	 */
 	public int peek() {
+		if (isEmpty())
+			throw new ArrayIndexOutOfBoundsException("Priority queue is empty");
 		return queueArray[nItems - 1];
 	}
 

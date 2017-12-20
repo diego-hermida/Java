@@ -112,7 +112,7 @@ public class MatrixTest {
 		assertFalse(m2.equals(m3));
 
 		// System.out.println("m2 -->\n" + m2);
-		m2.toString();
+		// m2.toString();
 		// System.out.println("m3 -->\n" + m3);
 
 		// test operations (valid)

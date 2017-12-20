@@ -45,7 +45,7 @@ public class Queue {
 	 */
 	public boolean insert(final int x) {
 		if (isFull())
-			return false;
+			throw new ArrayIndexOutOfBoundsException("Full queue");
 		/**
 		 * This check is incorrect "if (rear == (maxSize - 1))" because that case will
 		 * never happen.
@@ -67,10 +67,8 @@ public class Queue {
 	 * @return the new front of the queue
 	 */
 	public int remove() { // Remove an element from the front of the queue
-		if (isEmpty()) {
-			System.out.println("Queue is empty");
-			return -1;
-		}
+		if (isEmpty())
+			throw new ArrayIndexOutOfBoundsException("Queue is empty");
 		final int temp = queueArray[front];
 		front++;
 		if (front == maxSize) // Dealing with wrap-around again
@@ -94,6 +92,8 @@ public class Queue {
 	 * @return element at the rear of the queue
 	 */
 	public int peekRear() {
+		if (isEmpty())
+			throw new ArrayIndexOutOfBoundsException("Queue is empty");
 		return queueArray[rear];
 	}
 

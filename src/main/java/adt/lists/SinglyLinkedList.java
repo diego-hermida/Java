@@ -89,15 +89,4 @@ public class SinglyLinkedList<T> {
 	public boolean isEmpty() {
 		return head == null;
 	}
-
-	@Override
-	public String toString() {
-		MyNode<T> temp = head;
-		String value = "";
-		while (temp != null) {
-			value += temp.getItem().toString() + " ";
-			temp = temp.getNext();
-		}
-		return value;
-	}
 }

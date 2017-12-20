@@ -1,6 +1,7 @@
 package adt.stacks;
 
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 
 /**
  * This is an ArrayList Implementation of stack, Where size is not a problem we
@@ -44,10 +45,8 @@ public class StackWithoutSize {
 			final int popValue = stackList.get(stackList.size() - 1);
 			stackList.remove(stackList.size() - 1); // removes the poped element from the list
 			return popValue;
-		} else {
-			System.out.print("The stack is already empty  ");
-			return -1;
-		}
+		} else
+			throw new EmptyStackException();
 
 	}
 
@@ -71,6 +70,8 @@ public class StackWithoutSize {
 	 * @return top element of stack
 	 */
 	public int peek() {
+		if (isEmpty())
+			throw new EmptyStackException();
 		return stackList.get(stackList.size() - 1);
 	}
 

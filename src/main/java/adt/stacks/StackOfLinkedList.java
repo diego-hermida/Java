@@ -1,5 +1,7 @@
 package adt.stacks;
 
+import java.util.EmptyStackException;
+
 /**
  *
  * @author Varun Upadhyay (https://github.com/varunu28)
@@ -41,25 +43,9 @@ public class StackOfLinkedList {
 
 	public void pop() {
 		if (getSize() == 0)
-			System.out.println("Empty stack. Nothing to pop");
-
-		final Node temp = head;
+			throw new EmptyStackException();
 		head = head.next;
 		size--;
-
-		System.out.println("Popped element is: " + temp.data);
-	}
-
-	public void printStack() {
-
-		Node temp = head;
-		System.out.println("Stack is printed as below: ");
-		while (temp != null) {
-			System.out.print(temp.data + " ");
-			temp = temp.next;
-		}
-		System.out.println();
-
 	}
 
 	public boolean isEmpty() {

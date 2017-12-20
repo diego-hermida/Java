@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.EmptyStackException;
+
 import org.junit.Test;
 
 import adt.stacks.StackWithoutSize;
@@ -17,12 +19,19 @@ public class StackWithoutSizeTest {
 
 	@Test
 	public void testEmptyStackWithoutSize() {
-
 		assertTrue(stack.isEmpty());
-		assertEquals(stack.pop(), NON_EXISTENT_ELEMENT);
+	}
 
-		// ArrayIndexOutBoundsException with this check
-		// assertEquals(stack.peek(), NON_EXISTENT_ELEMENT);
+	@Test(expected = EmptyStackException.class)
+	public void testPopEmptyStackWithoutSizeException() {
+		assertTrue(stack.isEmpty());
+		stack.pop();
+	}
+
+	@Test(expected = EmptyStackException.class)
+	public void testPeekEmptyStackWithoutSizeException() {
+		assertTrue(stack.isEmpty());
+		stack.peek();
 	}
 
 	@Test

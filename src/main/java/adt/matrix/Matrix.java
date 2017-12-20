@@ -160,20 +160,20 @@ public class Matrix {
 	 * [ a b c ] ... [ x y z ] ... [ i j k ] ... ...
 	 *
 	 */
-	@Override
-	public String toString() {
-		String str = "";
-
-		for (final int[] element : data) {
-			str += "[ ";
-			for (int j = 0; j < data[0].length; j++) {
-				str += element[j];
-				str += " ";
-			}
-			str += "]";
-			str += "\n";
-		}
-
-		return str;
-	}
+	// @Override
+	// public String toString() {
+	// String str = "";
+	//
+	// for (final int[] element : data) {
+	// str += "[ ";
+	// for (int j = 0; j < data[0].length; j++) {
+	// str += element[j];
+	// str += " ";
+	// }
+	// str += "]";
+	// str += "\n";
+	// }
+	//
+	// return str;
+	// }
 }
