@@ -2,14 +2,14 @@ package others;
 /*
 @author  : Mayank K Jha
 
-*/
+ */
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Solution {
+public class Dijkstra {
 
 	public static void main(String[] args) throws IOException {
 		Scanner in = new Scanner(System.in);
@@ -32,7 +32,7 @@ public class Solution {
 			int x = in.nextInt(), y = in.nextInt();
 			long cmp = in.nextLong();
 			if (w[x][y] > cmp) { // Comparing previous edge value with current
-									// value - Cycle Case
+				// value - Cycle Case
 				w[x][y] = cmp;
 				w[y][x] = cmp;
 			}
@@ -40,14 +40,12 @@ public class Solution {
 
 		// Implementing Dijkshtra's Algorithm
 
-		Stack<Integer> t = new Stack<Integer>();
+		Stack<Integer> t = new Stack<>();
 		int src = in.nextInt();
-		for (int i = 1; i <= n; i++) {
-			if (i != src) {
+		for (int i = 1; i <= n; i++)
+			if (i != src)
 				t.push(i);
-			}
-		}
-		Stack<Integer> p = new Stack<Integer>();
+		Stack<Integer> p = new Stack<>();
 		p.push(src);
 		w[src][src] = 0;
 		while (!t.isEmpty()) {
@@ -65,13 +63,11 @@ public class Solution {
 		}
 
 		// Printing shortest path from the given source src
-		for (int i = 1; i <= n; i++) {
-			if (i != src && w[src][i] != 1000000l) {
+		for (int i = 1; i <= n; i++)
+			if ((i != src) && (w[src][i] != 1000000l))
 				System.out.print(w[src][i] + " ");
-			} else if (i != src) {
+			else if (i != src)
 				System.out.print("-1" + " ");
-			} // Printing -1 if there is no path b/w given pair of edges
-		}
 
 	}
 }

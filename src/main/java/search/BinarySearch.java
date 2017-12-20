@@ -1,14 +1,12 @@
 package search;
 
-import java.util.Scanner;
-
 /**
  *
  * @author Varun Upadhyay (https://github.com/varunu28)
  *
  */
 
-class BinarySearch {
+public class BinarySearch {
 	/**
 	 * This method implements the Generic Binary Search
 	 *
@@ -40,37 +38,4 @@ class BinarySearch {
 		return mid;
 	}
 
-	// Driver Program
-	public static void main(final String[] args) {
-		final Scanner input = new Scanner(System.in);
-
-		// For INTEGER Input
-		final Integer[] array = new Integer[10];
-		final int key = 5;
-
-		for (int i = 0; i < 10; i++)
-			array[i] = i + 1;
-
-		final int index = BinarySearch.BS(array, key, 0, 9);
-
-		if (index != -1)
-			System.out.println(
-					"Number " + key + " found at index number : " + index);
-		else
-			System.out.println("Not found");
-
-		// For STRING Input
-		final String[] array1 = { "a", "b", "c", "d", "e" };
-		final String key1 = "d";
-
-		final int index1 = BinarySearch.BS(array1, key1, 0, array1.length - 1);
-
-		if (index1 != -1)
-			System.out.println(
-					"String " + key1 + " found at index number : " + index1);
-		else
-			System.out.println("Not found");
-
-		input.close();
-	}
 }
